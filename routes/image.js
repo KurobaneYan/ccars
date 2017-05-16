@@ -1,16 +1,33 @@
-let multer = require("multer");
-let upload = multer({dest: "../uploads"});
-let mongoose = require("mongoose");
-let fs = require('fs');
-let router = express.Router();
+let express = require('express')
 
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
-});
-router.post('/', function(req, res, next) {
-    let newItem = new Item();
-    newItem.img.data = fs.readFileSync(req.files.userPhoto.path);
-    newItem.save();
-});
+module.exports = function (fs, gfs, upload) {
+  let router = express.Router()
 
-module.exports = router;
+  router.get('/', function (req, res, next) {
+    res.render('image', { title: 'Express' })
+  })
+
+  router.get('/:filename', function (req, res) {
+    let readStream = gfs.createReadStream({ filename: req.params.filename })
+    readStream.on('error', (err) => {
+      res.send(err)
+    })
+    readStream.pipe(res)
+  })
+  router.post('/', upload.single('image'), function (req, res, next) {
+    let writestream = gfs.createWriteStream({
+      filename: req.file.originalname
+    })
+    fs.createReadStream('./uploads/' + req.file.filename)
+            .on('end', function () {
+              fs.unlink('./uploads/' + req.file.filename, function (err) {
+                console.log(err)
+                res.send('success')
+              })
+            })
+            .on('err', function () { res.send('Error uploading image') })
+            .pipe(writestream)
+  })
+
+  return router
+}
