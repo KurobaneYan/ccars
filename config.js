@@ -1,4 +1,4 @@
-let config = {
+const config = {
   expressPort: 1337,
   databaseUrl: 'mongodb://localhost/ccars'
 }

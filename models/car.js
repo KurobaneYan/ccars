@@ -1,6 +1,6 @@
-let mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
-let carSchema = new mongoose.Schema({
+const carSchema = new mongoose.Schema({
   manufacturer: String,
   model: String,
   year: Number,
@@ -13,6 +13,6 @@ let carSchema = new mongoose.Schema({
   views: Number
 })
 
-let Car = mongoose.model('Car', carSchema)
+const Car = mongoose.model('Car', carSchema)
 
 module.exports = Car
