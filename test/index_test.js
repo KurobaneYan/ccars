@@ -1,7 +1,7 @@
-let chai = require('chai')
-let chaiHttp = require('chai-http')
-let should = chai.should()
-let server = require('../app')
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const server = require('../app')
+const should = chai.should()
 
 chai.use(chaiHttp)
 
@@ -10,6 +10,8 @@ describe('/GET', () => {
     chai.request(server)
       .get('/')
       .end((err, res) => {
+        should.exist(res)
+        should.not.exist(err)
         res.should.have.status(200)
         done()
       })

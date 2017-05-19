@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>CCars</title>
+
+  <link rel="stylesheet" href="styles/kendo.common-material.min.css" />
+  <link rel="stylesheet" href="styles/kendo.materialblack.min.css" />
+  <link rel="stylesheet" href="styles/style.css" />
+
+  <script src="libs/jquery.min.js"></script>
+  <script src="libs/kendo.all.min.js"></script>
+</head>
+<body>
+
+<h1>Upload to Cloudinary with FormData</h1>
+<form action="" method="post" enctype="multipart/form-data" onsubmit="AJAXSubmit(this); return false;">
+  <fieldset>
+    <legend>Upload example</legend>
+    <p>
+      <label for="upload_preset">Unsigned upload Preset:
+        <input type="text" name="upload_preset" value="mmdwfo4s">
+      </label>
+    </p>
+    <p>
+      <label >Select your photo:
+      <input type="file" name="file"></label>
+    <p>
+      <input type="submit" value="Submit" />
+    </p>
+    <img id="uploaded">
+    <div id="results"></div>
+  </fieldset>
+</form>
+
+<script src="js/fiddle.js"></script>
+</body>
+</html>
