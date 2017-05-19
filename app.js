@@ -9,7 +9,7 @@ const cloudinaryRoute = require('./routes/cloudinaryHelper')
 
 let app = express()
 
-mongoose.Promis = global.Promise
+mongoose.Promise = global.Promise
 mongoose.connect(config.databaseUrl)
 const connection = mongoose.connection
 
