@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "standard && mocha"
+    "test": "standard && mocha --recursive --reporter nyan",
+    "wtest": "mocha --recursive --watch --reporter min"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
