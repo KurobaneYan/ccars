@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
 const config = require('./config')
+const indexRoute = require('./routes/index')
 const cloudinaryRoute = require('./routes/cloudinaryHelper')
 
 let app = express()
@@ -18,18 +19,24 @@ connection.once('open', () => {
   console.log('Mongoose connected to ' + config.databaseUrl)
 })
 
+app.set('views', path.join(__dirname, '/views'))
+app.set('view engine', 'pug')
+
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
+
+app.use('/', indexRoute)
+
+app.use('/api', cloudinaryRoute)
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'X-Requested-With')
   res.header('Access-Control-Allow-Methods', 'GET, POST', 'PUT', 'DELETE')
   next()
 })
-
-app.use('/api', cloudinaryRoute)
 
 app.use((req, res, next) => {
   let err = new Error('Not Found')

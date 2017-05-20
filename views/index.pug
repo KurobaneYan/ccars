@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  .k-content.wide(data-role='view')
+    #cars(
+      data-role='listview'
+      data-template='carTemplate'
+      data-bind='source: cars'
+    )
