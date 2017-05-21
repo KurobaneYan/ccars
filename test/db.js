@@ -12,4 +12,17 @@ describe('DB operations with Car model', () => {
       })
       .then(done, done)
   })
+
+  it('returns filtered array with cars', (done) => {
+    should.exist(Car)
+    const filter = {
+      manufacturer: 'Mitsubishi',
+      price: { $gt: 0 }
+    }
+    db.getFilteredCars(filter)
+      .then(cars => {
+        cars.should.have.length.of.at.least(1)
+      })
+      .then(done, done)
+  })
 })
