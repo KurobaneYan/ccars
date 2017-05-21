@@ -4,6 +4,26 @@ block content
   .row
     .col-md-9
       p cars vill be here
-    .col-md-3
-      input#manufacturer
+    .col-md-3#filter
+      input#manufacturer(
+        data-role='autocomplete'
+        data-placeholder='Type a manufacturer'
+        data-bind=`
+          value: selectedManufacturer,
+          source: manufacturers,
+          events: {
+            change: manufacturerOnChange
+          }
+        `
+      )
+      input#model(
+        data-role='autocomplete'
+        data-placeholder='Type a model'
+        data-bind=`
+          enabled: isModelEnabled,
+          value: selectedModel,
+          source: models
+        `
+      )
+      button.k-button.k-primary#showAlert submit
   script(src='js/filter.js')

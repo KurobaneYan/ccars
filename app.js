@@ -5,7 +5,11 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
 const config = require('./config')
+
+require('./models/car')
+
 const indexRoute = require('./routes/index')
+const carRoute = require('./routes/car')
 const cloudinaryRoute = require('./routes/cloudinaryHelper')
 
 let app = express()
@@ -28,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRoute)
-
+app.use('/api', carRoute)
 app.use('/api', cloudinaryRoute)
 
 app.use((req, res, next) => {
