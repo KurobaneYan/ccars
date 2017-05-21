@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  .k-content.wide(data-role='view')
-    #cars(
-      data-role='listview'
-      data-template='carTemplate'
-      data-bind='source: cars'
-    )
+  .row
+    .col-md-9
+      p cars vill be here
+    .col-md-3
+      input#manufacturer
+  script(src='js/filter.js')

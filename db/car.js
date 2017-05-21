@@ -3,6 +3,10 @@ const Car = mongoose.model('Car')
 
 exports.getAll = () => Car.find()
 
-exports.getFilteredCars = (filter) => {
-  return Car.find(filter)
+exports.getFilteredCars = (filter) => Car.find(filter)
+
+exports.getManufacturers = () => Car.find().distinct('manufacturer')
+
+exports.getModels = (manufacturer) => {
+  return Car.find({ manufacturer: manufacturer }).distinct('model')
 }
