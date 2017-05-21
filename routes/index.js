@@ -6,4 +6,8 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'CCars' })
 })
 
+router.get('/filter', (req, res, next) => {
+  res.render('filter', { title: 'CCars Filter' })
+})
+
 module.exports = router
