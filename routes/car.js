@@ -17,4 +17,12 @@ router.get('/models/:manufacturer', (req, res, next) => {
     })
 })
 
+router.get('/cars/most-popular/:amount', (req, res, next) => {
+  const amount = parseInt(req.params.amount)
+  db.getMostPopular(amount)
+    .then(models => {
+      res.json(models)
+    })
+})
+
 module.exports = router

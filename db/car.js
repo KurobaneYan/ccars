@@ -10,3 +10,7 @@ exports.getManufacturers = () => Car.find().distinct('manufacturer')
 exports.getModels = (manufacturer) => {
   return Car.find({ manufacturer: manufacturer }).distinct('model')
 }
+
+exports.getMostPopular = (amount) => {
+  return Car.find().sort({ views: -1 }).limit(amount)
+}

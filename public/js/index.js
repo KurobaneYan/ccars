@@ -1,5 +1,5 @@
 $(function () {
-  let url = 'http://localhost:1337/api/cars/mostPopular/25'
+  let url = 'http://localhost:3000/api/cars/most-popular/25'
 
   let viewModel = kendo.observable({
     cars: new kendo.data.DataSource({
