@@ -2,7 +2,6 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/styles/bootstrap.min.css')
     link(rel='stylesheet', href='/styles/kendo.common-material.min.css')
     link(rel='stylesheet', href='/styles/kendo.material.min.css')
     link(rel='stylesheet', href='/styles/style.css')
@@ -15,16 +14,9 @@ html
     include templates.html
 
   body
-    nav.navbar.navbar-inverse.navbar-fixed-top
-      .container
-        .navbar-header
-          a.navbar-brand(href="/") CCars
-
-        .navbar-form.navbar-right
-          .form-group
-            input.form-control(type="text")
-          button.btn.btn-default Search
-
-    .container
+    #page
+      ul#menu
+        li
+          a.navbar-brand(href="/#") CCars
       block content
 

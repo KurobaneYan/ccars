@@ -1,7 +1,6 @@
 body {
     display: block;
     margin: 0px;
-    padding-top: 60px;
 }
 
 #cars {
@@ -20,3 +19,8 @@ body {
   height: auto;
 }
 
+#page {
+    max-width:72%;
+    margin: 0 auto;
+    background: #fff;
+}

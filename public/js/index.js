@@ -13,4 +13,6 @@ $(function () {
   })
 
   kendo.bind($('#cars'), viewModel)
+
+  $('#menu').kendoMenu()
 })
