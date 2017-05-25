@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  #charts
+    div(
+      data-role="chart"
+      data-title="{ text: 'Average price by manufacturers', position: 'bottom'}"
+      data-legend="{ position: 'bottom' }"
+      data-series-defaults="{ type: 'column' }"
+      data-series="[{ field: 'averagePrice', name: 'price' }]"
+      data-bind="source: manufacturersData"
+      data-tooltip="{visible: true, template: '${dataItem.name} - ${kendo.toString(value, \"c0\")}'}"
+    )
+    div(
+      data-role="chart"
+      data-title="{ text: 'Manufacturers popularity', position: 'bottom'}"
+      data-series-defaults="{ type: 'pie', labels: {template: \"#= dataItem.name # - #= kendo.format('{0:P}', percentage)#\", position: \"outsideEnd\", visible: true, background: \"transparent\"}}"
+      data-series="[{ field: 'averageViews', name: 'Average views' }]"
+      data-bind="source: manufacturersData"
+      data-tooltip="{visible: true, template: '${kendo.toString(value, \"n0\")} views'}"
+    )
+    div(
+      data-role="chart"
+      data-title="{ text: 'Average price of a model', position: 'bottom'}"
+      data-legend="{ position: 'bottom' }"
+      data-series-defaults="{ type: 'line' }"
+      data-series="[{ field: 'averagePrice', name: 'price' }]"
+      data-bind="source: modelsData"
+      data-tooltip="{visible: true, template: '${dataItem._id} - ${kendo.toString(value, \"c0\")}'}"
+    )
+    div(
+      data-role="chart"
+      data-title="{ text: 'Models popularity', position: 'bottom'}"
+      data-legend="{ position: 'bottom' }"
+      data-series-defaults="{ type: 'radarLine' }"
+      data-series="[{ field: 'averageViews', name: 'views' }]"
+      data-bind="source: modelsData"
+      data-tooltip="{visible: true, template: '${dataItem._id} - ${kendo.toString(value, \"n0\")} views'}"
+    )
+
+
+  script(src="js/charts.js")

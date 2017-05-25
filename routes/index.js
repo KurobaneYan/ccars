@@ -10,4 +10,8 @@ router.get('/filter', (req, res, next) => {
   res.render('filter', { title: 'CCars Filter' })
 })
 
+router.get('/charts', (req, res, next) => {
+  res.render('charts', { title: 'CCars Charts' })
+})
+
 module.exports = router
