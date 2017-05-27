@@ -1,6 +1,7 @@
 script(id="carCard" type="text/x-kendo-template")
   .carCard
-    img(src="#=photos[0]#" alt="#:manufacturer# #:model# image")
-    h3 #:manufacturer# #:model#
+    a(href="\\#/#=_id#").k-link
+      img(src="#=photos[0]#" alt="#:manufacturer# #:model# image")
+      h3 #:manufacturer# #:model#
     p #:kilometrage * 1000# km
     p #:kendo.toString(price, "c")#

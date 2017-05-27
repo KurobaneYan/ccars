@@ -20,7 +20,7 @@ body {
   flex: 0 1 calc(20% - 8px);
 }
 
-.carCard > img {
+.carCard img {
   width: 100%;
   height: auto;
 }
