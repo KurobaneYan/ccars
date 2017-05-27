@@ -1,0 +1,107 @@
+script(id="filter" type="text/x-kendo-template")
+  div
+    div cars will be here
+    form#filterForm
+      .form-group
+        input#manufacturer(
+          data-role='autocomplete'
+          data-placeholder='Type a manufacturer'
+          data-bind=`
+            value: selectedManufacturer,
+            source: manufacturers,
+            events: {
+              change: manufacturerOnChange
+            }
+          `
+        )
+      .form-group
+        input#model(
+          data-role='autocomplete'
+          data-placeholder='Type a model'
+          data-bind=`
+            enabled: isModelEnabled,
+            value: selectedModel,
+            source: models
+          `
+        )
+      .form-group
+        p year
+        #year(
+          data-role='rangeslider'
+          data-bind='value: years'
+          data-min='1996'
+          data-max='2017'
+          data-small-step='1'
+          data-large-step='10'
+          data-tickplacement='none'
+        )
+          input
+          input
+      .form-group
+        p price
+        #price(
+          data-role='rangeslider'
+          data-bind='value: price'
+          data-min='0'
+          data-max='1000000'
+          data-small-step='100'
+          data-large-step='10000'
+          data-tickplacement='none'
+        )
+          input
+          input
+      .form-group
+        label(for='manual') Manual
+        input(
+          type='radio'
+          value='Manual'
+          name='transmission'
+          id='manual'
+          data-bind='checked: transmission'
+        )
+        label(for='automatic') Automatic
+        input(
+          type='radio'
+          value='Automatic'
+          name='transmission'
+          id='automatic'
+          data-bind='checked: transmission'
+        )
+      .form-group
+        label Disel
+          input(
+            type='radio'
+            value='Disel'
+            name='fuelType'
+            data-bind='checked: fuelType'
+          )
+        label Gasoline
+          input(
+            type='radio'
+            value='Gasoline'
+            name='fuelType'
+            data-bind='checked: fuelType'
+          )
+      .form-group
+        p kilometrage
+        input(
+          data-role='numerictextbox'
+          data-bind='value: kilometrage'
+          data-min='0'
+          data-max='1000'
+          data-decimals='0'
+        )
+        span kkm
+      .form-group
+        p engine displacement
+        input(
+          data-role='numerictextbox'
+          data-bind='value: engineDisplacement'
+          step='100'
+          data-min='0'
+          data-max='10000'
+          data-decimals='0'
+        )
+        cm
+      .form-group
+        .k-button.k-primary#showAlert apply
