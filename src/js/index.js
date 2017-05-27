@@ -1,18 +1,31 @@
-$(function () {
-  let url = 'http://localhost:3000/api/cars/most-popular/25'
+const url = 'http://localhost:3000/api/cars/most-popular/25'
 
-  let viewModel = kendo.observable({
-    cars: new kendo.data.DataSource({
-      transport: {
-        read: {
-          url: url,
-          dataType: 'json'
-        }
+const viewModel = kendo.observable({
+  cars: new kendo.data.DataSource({
+    transport: {
+      read: {
+        url: url,
+        dataType: 'json'
       }
-    })
+    }
   })
+})
 
-  kendo.bind($('#cars'), viewModel)
+const layout = new kendo.Layout('layout')
+const index = new kendo.View('index', {
+  model: viewModel
+})
 
-  $('#menu').kendoMenu()
+const router = new kendo.Router()
+
+router.bind('init', () => {
+  layout.render($('#app'))
+})
+
+router.route('/', () => {
+  layout.showIn('#content', index)
+})
+
+$(() => {
+  router.start()
 })

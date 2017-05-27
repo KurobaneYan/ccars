@@ -1,9 +1,15 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/styles/kendo.common-material.min.css')
+    link(rel='stylesheet', href='/styles/kendo.material.min.css')
+    link(rel='stylesheet', href='/styles/style.css')
 
-block content
-  div(data-role='view')
-    #cars(
-      data-role='listview'
-      data-template='carTemplate'
-      data-bind='source: cars'
-    )
+    script(src='libs/jquery.min.js')
+    script(src='libs/kendo.all.min.js')
+
+    include templates/layout.pug
+    include templates/index.pug
+    include templates/carCard.html
+  body#app

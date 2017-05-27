@@ -8,7 +8,6 @@ const config = require('./config')
 
 require('./models/car')
 
-const indexRoute = require('./routes/index')
 const carRoute = require('./routes/car')
 const cloudinaryRoute = require('./routes/cloudinaryHelper')
 
@@ -23,15 +22,11 @@ connection.once('open', () => {
   console.log('Mongoose connected to ' + config.databaseUrl)
 })
 
-app.set('views', path.join(__dirname, '/views'))
-app.set('view engine', 'pug')
-
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', indexRoute)
 app.use('/api', carRoute)
 app.use('/api', cloudinaryRoute)
 
@@ -52,7 +47,7 @@ app.use((err, req, res, next) => {
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
   res.status(err.status || 500)
-  res.render('error')
+  res.send('error')
 })
 
 module.exports = app

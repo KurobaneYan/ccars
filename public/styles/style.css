@@ -3,24 +3,24 @@ body {
     margin: 0px;
 }
 
-#cars {
+#app {
+    max-width:72%;
+    margin: 0 auto;
+    background: #fff;
+}
+
+#carCards {
   position: relative;
   display: flex;
   flex-flow: row wrap;
 }
 
-.car {
+.carCard {
   margin: 4px;
   flex: 0 1 calc(20% - 8px);
 }
 
-.car > img {
+.carCard > img {
   width: 100%;
   height: auto;
-}
-
-#page {
-    max-width:72%;
-    margin: 0 auto;
-    background: #fff;
 }
