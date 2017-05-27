@@ -1,0 +1,11 @@
+script(id="car" type="text/x-kendo-template")
+  div(
+    data-bind="source: car"
+    data-template="carTemplate"
+  )
+
+script(id="carTemplate" type="text/x-kendo-template")
+  h1 #:manufacturer# #:model#
+  img(src="#=photos[0]#" alt="#:manufacturer# #:model# image")
+  p #:kilometrage * 1000# km
+  p #:kendo.toString(price, "c")#

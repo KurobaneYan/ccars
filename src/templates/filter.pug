@@ -2,7 +2,7 @@ script(id="filter" type="text/x-kendo-template")
   div
     div cars will be here
     form#filterForm
-      .form-group
+      .k-group
         input#manufacturer(
           data-role='autocomplete'
           data-placeholder='Type a manufacturer'
@@ -14,7 +14,7 @@ script(id="filter" type="text/x-kendo-template")
             }
           `
         )
-      .form-group
+      .k-group
         input#model(
           data-role='autocomplete'
           data-placeholder='Type a model'
@@ -24,7 +24,7 @@ script(id="filter" type="text/x-kendo-template")
             source: models
           `
         )
-      .form-group
+      .k-group
         p year
         #year(
           data-role='rangeslider'
@@ -37,7 +37,7 @@ script(id="filter" type="text/x-kendo-template")
         )
           input
           input
-      .form-group
+      .k-group
         p price
         #price(
           data-role='rangeslider'
@@ -50,7 +50,7 @@ script(id="filter" type="text/x-kendo-template")
         )
           input
           input
-      .form-group
+      .k-group
         label(for='manual') Manual
         input(
           type='radio'
@@ -67,7 +67,7 @@ script(id="filter" type="text/x-kendo-template")
           id='automatic'
           data-bind='checked: transmission'
         )
-      .form-group
+      .k-group
         label Disel
           input(
             type='radio'
@@ -82,7 +82,7 @@ script(id="filter" type="text/x-kendo-template")
             name='fuelType'
             data-bind='checked: fuelType'
           )
-      .form-group
+      .k-group
         p kilometrage
         input(
           data-role='numerictextbox'
@@ -92,7 +92,7 @@ script(id="filter" type="text/x-kendo-template")
           data-decimals='0'
         )
         span kkm
-      .form-group
+      .k-group
         p engine displacement
         input(
           data-role='numerictextbox'
@@ -103,5 +103,4 @@ script(id="filter" type="text/x-kendo-template")
           data-decimals='0'
         )
         cm
-      .form-group
-        .k-button.k-primary#showAlert apply
+      .k-button.k-primary#showAlert apply

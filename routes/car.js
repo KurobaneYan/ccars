@@ -50,4 +50,14 @@ router.get('/modelsData', (req, res, next) => {
     .then(p => res.json(p.map(i => i[0])))
 })
 
+router.get('/car/:carId', (req, res, next) => {
+  db.getById(req.params.carId)
+    .then(c => {
+      c.views += 1
+      return db.updateById(req.params.carId, c)
+    })
+    .then(c => res.json([c]))
+    .catch(e => res.json({error: e}))
+})
+
 module.exports = router

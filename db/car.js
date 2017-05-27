@@ -5,6 +5,12 @@ const getManufacturers = () => Car.find().distinct('manufacturer')
 
 exports.getAll = () => Car.find()
 
+exports.getById = carId => Car.findOne({ _id: carId })
+
+exports.updateById = (carId, car) => {
+  return Car.findOneAndUpdate({ _id: carId }, car, { new: true })
+}
+
 exports.getFilteredCars = (filter) => Car.find(filter)
 
 exports.getManufacturers = getManufacturers
