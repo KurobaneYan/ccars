@@ -34,12 +34,12 @@ router.route('/', () => {
   layout.showIn('#content', index)
 })
 
-router.route('/:carId', (carId) => {
-  layout.showIn('#content', car)
-})
-
 router.route('/filter', () => {
   layout.showIn('#content', filter)
+})
+
+router.route('/:carId', (carId) => {
+  layout.showIn('#content', car)
 })
 
 $(() => {
