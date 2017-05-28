@@ -12,6 +12,9 @@ const carData = new kendo.data.DataSource({
 })
 
 export const carViewModel = kendo.observable({
-  car: carData,
-  show: () => carData.read()
+  car: null,
+  show: () => {
+    carViewModel.set('car', carData)
+    carData.read()
+  }
 })
