@@ -1,6 +1,9 @@
 script(id="filter" type="text/x-kendo-template")
   div
-    div cars will be here
+    #carsList(
+      data-bind="source: cars"
+      data-template="carListItem"
+    )
     form#filterForm
       .k-group
         input#manufacturer(

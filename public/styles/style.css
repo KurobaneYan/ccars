@@ -3,6 +3,11 @@ body {
     margin: 0px;
 }
 
+img {
+  width: 100%;
+  height: auto;
+}
+
 #app {
     max-width:72%;
     margin: 0 auto;
@@ -27,9 +32,28 @@ body {
 
 #filterForm {
   float: right;
+  width: 30%;
 }
 
-img {
-  width: 100%;
-  height: auto;
+#carsList {
+  float: left;
+  width: 65%;
+  padding-right: 5%;
+}
+
+.carListItem {
+  clear: both;
+  padding-bottom: 16px;
+}
+
+.carListItem .img {
+  float: left;
+  width: 30%;
+  padding-right: 5%;
+}
+
+.carListItem .description {
+  float: right;
+  width: 65%;
+  padding-bottom: 16px;
 }

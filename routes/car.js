@@ -17,6 +17,11 @@ router.get('/models/:manufacturer', (req, res, next) => {
     })
 })
 
+router.get('/cars', (req, res, next) => {
+  db.getAll()
+    .then(cars => res.json(cars))
+})
+
 router.get('/cars/most-popular/:amount', (req, res, next) => {
   const amount = parseInt(req.params.amount)
   db.getMostPopular(amount)

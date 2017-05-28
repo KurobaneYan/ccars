@@ -21,7 +21,17 @@ const modelsData = new kendo.data.DataSource({
   }
 })
 
+const carsData = new kendo.data.DataSource({
+  transport: {
+    read: {
+      url: 'http://localhost:3000/api/cars',
+      dataType: 'json'
+    }
+  }
+})
+
 export const filterViewModel = kendo.observable({
+  cars: carsData,
   selectedManufacturer: null,
   years: [1996, 2017],
   price: [0, 1000000],

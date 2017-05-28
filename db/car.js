@@ -3,7 +3,7 @@ const Car = mongoose.model('Car')
 
 const getManufacturers = () => Car.find().distinct('manufacturer')
 
-exports.getAll = () => Car.find()
+exports.getAll = () => Car.find().sort({ views: -1 })
 
 exports.getById = carId => Car.findOne({ _id: carId })
 

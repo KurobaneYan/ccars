@@ -1,0 +1,12 @@
+script(id="carListItem" type="text/x-kendo-template")
+  .carListItem
+    .img
+      a(href="\\#/#=_id#").k-link
+        img(src="#=photos[0]#" alt="#:manufacturer# #:model# image")
+    .description
+      a(href="\\#/#=_id#").k-link #:manufacturer# #:model#
+      p Kilometrage - #:kilometrage * 1000# km
+      p Year #:year#
+      p Fuel type #:fuelType#
+      p #:transmissionType# transmission
+      p #:kendo.toString(price, "c")#

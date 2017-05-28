@@ -5,7 +5,10 @@ script(id="car" type="text/x-kendo-template")
   )
 
 script(id="carTemplate" type="text/x-kendo-template")
-  h1 #:manufacturer# #:model#
+  h1 #:manufacturer# #:model# #:year#
+  h2 #:kendo.toString(price, "c")#
   img(src="#=photos[0]#" alt="#:manufacturer# #:model# image")
+  p #:transmissionType# transmission
+  p Fuel type - #:fuelType#
   p #:kilometrage * 1000# km
-  p #:kendo.toString(price, "c")#
+  p #:views# views
