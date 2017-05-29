@@ -1,5 +1,5 @@
 script(id="filter" type="text/x-kendo-template")
-  div
+  #flexFilter
     #carsList
       div(
         data-role="listview"
@@ -12,6 +12,7 @@ script(id="filter" type="text/x-kendo-template")
       )
     form#filterForm
       .k-group
+        h4 manufacturer
         input#manufacturer(
           data-role='autocomplete'
           data-placeholder='Type a manufacturer'
@@ -24,20 +25,24 @@ script(id="filter" type="text/x-kendo-template")
           `
         )
       .k-group
+        h4 model
         input#model(
           data-role='autocomplete'
           data-placeholder='Type a model'
           data-bind=`
             enabled: isModelEnabled,
             value: selectedModel,
-            source: models
+            source: models,
+            events: {
+              change: changeRoute
+            }
           `
         )
       .k-group
-        p year
+        h4 year
         #year(
           data-role='rangeslider'
-          data-bind='value: years'
+          data-bind='value: years, events: {change: changeRoute}'
           data-min='1996'
           data-max='2017'
           data-small-step='1'
@@ -47,7 +52,7 @@ script(id="filter" type="text/x-kendo-template")
           input
           input
       .k-group
-        p price
+        h4 price
         #price(
           data-role='rangeslider'
           data-bind='value: price'
@@ -60,6 +65,7 @@ script(id="filter" type="text/x-kendo-template")
           input
           input
       .k-group
+        h4 Transmission
         label(for='manual') Manual
         input(
           type='radio'
@@ -77,6 +83,7 @@ script(id="filter" type="text/x-kendo-template")
           data-bind='checked: transmission'
         )
       .k-group
+        h4 Fuel type
         label Disel
           input(
             type='radio'
@@ -92,7 +99,7 @@ script(id="filter" type="text/x-kendo-template")
             data-bind='checked: fuelType'
           )
       .k-group
-        p kilometrage
+        h4 Kilometrage in kkm
         input(
           data-role='numerictextbox'
           data-bind='value: kilometrage'
@@ -100,9 +107,9 @@ script(id="filter" type="text/x-kendo-template")
           data-max='1000'
           data-decimals='0'
         )
-        span kkm
       .k-group
-        p engine displacement
+        h4 Engine displacement in cm
+          sup 3
         input(
           data-role='numerictextbox'
           data-bind='value: engineDisplacement'
@@ -111,5 +118,5 @@ script(id="filter" type="text/x-kendo-template")
           data-max='10000'
           data-decimals='0'
         )
-        cm
-      .k-button.k-primary(data-bind="click: filter") apply
+      .k-group
+        p.k-button(data-bind="click: resetFilter") reset filter

@@ -1,6 +1,6 @@
 body {
-    display: block;
-    margin: 0px;
+  display: block;
+  margin: 10px;
 }
 
 img {
@@ -9,9 +9,8 @@ img {
 }
 
 #app {
-    max-width:72%;
-    margin: 0 auto;
-    background: #fff;
+  margin: 0px auto;
+  width: 80%;
 }
 
 #carCards {
@@ -30,30 +29,45 @@ img {
   height: auto;
 }
 
+#flexFilter {
+  display: flex;
+}
+
 #filterForm {
-  float: right;
-  width: 30%;
+  flex: 1 auto;
+  order: 2;
+  padding: 16px;
+  max-width: 30%;
 }
 
 #carsList {
-  float: left;
-  width: 65%;
-  padding-right: 5%;
+  flex: 2;
+  order: 1;
+  padding: 16px;
 }
 
 .carListItem {
-  clear: both;
+  display: flex;
   padding-bottom: 16px;
 }
 
 .carListItem .img {
-  float: left;
-  width: 30%;
-  padding-right: 5%;
+  flex: 1;
+  order: 1;
+  padding: 8px;
 }
 
 .carListItem .description {
-  float: right;
-  width: 65%;
-  padding-bottom: 16px;
+  flex: 2;
+  order: 2;
+  padding: 8px;
+}
+
+.k-group {
+  position: relative;
+  width: 100%;
+}
+
+#filterForm .k-widget {
+  width: 100%;
 }

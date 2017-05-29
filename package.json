@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "test": "standard && mocha --recursive --reporter nyan",
-    "wtest": "mocha --recursive --watch --reporter min"
+    "wtest": "mocha --recursive --watch --reporter min",
+    "standard": "standard"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -33,7 +34,7 @@
   },
   "standard": {
     "ignore": [
-      "public/libs/*"
+      "public/*"
     ],
     "globals": [
       "kendo"

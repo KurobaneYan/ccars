@@ -17,7 +17,11 @@ const indexViewModel = kendo.observable({
 const layout = new kendo.Layout('layout')
 const index = new kendo.View('index', { model: indexViewModel })
 const filter = new kendo.View('filter', { model: filterViewModel })
-const car = new kendo.View('car', { model: carViewModel, show: carViewModel.show })
+const admin = new kendo.View('admin')
+const car = new kendo.View('car', {
+  model: carViewModel,
+  show: carViewModel.show
+})
 const routeMissing = new kendo.View('routeMissing')
 
 const router = new kendo.Router({
@@ -34,8 +38,14 @@ router.route('/', () => {
   layout.showIn('#content', index)
 })
 
-router.route('/filter', () => {
+router.route('/filter', (params) => {
+  filterViewModel.setRouter(router)
+  filterViewModel.setUrlParams(params)
   layout.showIn('#content', filter)
+})
+
+router.route('/admin', () => {
+  layout.showIn('#content', admin)
 })
 
 router.route('/:carId', (carId) => {
