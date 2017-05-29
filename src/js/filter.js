@@ -27,7 +27,8 @@ const carsData = new kendo.data.DataSource({
       url: 'http://localhost:3000/api/cars',
       dataType: 'json'
     }
-  }
+  },
+  pageSize: 10
 })
 
 export const filterViewModel = kendo.observable({
@@ -54,5 +55,8 @@ export const filterViewModel = kendo.observable({
   models: modelsData,
   yearSliderOnSlide: function (e) {
     console.log('on slide ', e.value.toString())
+  },
+  filter: function (e) {
+    console.log(e)
   }
 })

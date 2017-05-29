@@ -1,9 +1,15 @@
 script(id="filter" type="text/x-kendo-template")
   div
-    #carsList(
-      data-bind="source: cars"
-      data-template="carListItem"
-    )
+    #carsList
+      div(
+        data-role="listview"
+        data-bind="source: cars"
+        data-template="carListItem"
+      )
+      #pager(
+        data-role="pager"
+        data-bind="source: cars"
+      )
     form#filterForm
       .k-group
         input#manufacturer(
@@ -106,4 +112,4 @@ script(id="filter" type="text/x-kendo-template")
           data-decimals='0'
         )
         cm
-      .k-button.k-primary#showAlert apply
+      .k-button.k-primary(data-bind="click: filter") apply
