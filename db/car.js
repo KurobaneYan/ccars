@@ -11,6 +11,8 @@ exports.updateById = (carId, car) => {
   return Car.findOneAndUpdate({ _id: carId }, car, { new: true })
 }
 
+exports.destroy = (id) => Car.remove({ _id: id })
+
 exports.getFilteredCars = (filter) => Car.find(filter)
 
 exports.getManufacturers = getManufacturers
