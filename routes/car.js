@@ -2,18 +2,6 @@ const express = require('express')
 const db = require('../db/car')
 
 let router = express.Router()
-let car = { _id: '592d3a3989658f2049d7cf60',
-  manufacturer: 'Mitsubishi',
-  model: 'Lancer',
-  year: '2008',
-  kilometrage: '53',
-  fuelType: 'Gasoline',
-  engineDisplacement: '2900',
-  transmissionType: 'Manual',
-  price: '570000',
-  views: '289',
-  __v: '0',
-  photos: ['https://www.mitsubishi-motors.ca/media/vehicle/nav/15LanEvoFE_Titanium-Grey_09_medium.png'] }
 
 router.get('/manufacturers', (req, res, next) => {
   db.getManufacturers()
@@ -35,14 +23,15 @@ router.get('/cars', (req, res, next) => {
 })
 
 router.post('/cars/update', (req, res, next) => {
-  console.log(req.body)
-  console.log(req.body['photos[]'])
-  res.json(car)
+  db.update(req.body._id, req.body)
+    .then((car) => res.json(car))
+    .catch(err => res.json(err))
 })
 
 router.post('/cars/create', (req, res, next) => {
-  console.log(req.body)
-  res.json(car)
+  db.create(req.body)
+    .then((car) => res.json(car))
+    .catch((err) => res.json(err))
 })
 
 router.post('/cars/destroy', (req, res, next) => {
