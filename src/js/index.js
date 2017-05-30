@@ -1,5 +1,6 @@
 import { filterViewModel } from './filter.js'
 import { carViewModel } from './car.js'
+import { adminViewModel } from './admin.js'
 
 const url = 'http://localhost:3000/api/cars/most-popular/25'
 
@@ -17,7 +18,7 @@ const indexViewModel = kendo.observable({
 const layout = new kendo.Layout('layout')
 const index = new kendo.View('index', { model: indexViewModel })
 const filter = new kendo.View('filter', { model: filterViewModel })
-const admin = new kendo.View('admin')
+const admin = new kendo.View('admin', { model: adminViewModel })
 const car = new kendo.View('car', {
   model: carViewModel,
   show: carViewModel.show
