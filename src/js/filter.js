@@ -262,6 +262,7 @@ function applyFilter () {
   cars.query({
     filter: filter,
     pageSize: 10,
-    page: 1
+    page: 1,
+    sort: { field: 'views', dir: 'desc' }
   })
 }
