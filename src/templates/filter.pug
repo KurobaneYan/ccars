@@ -42,7 +42,7 @@ script(id="filter" type="text/x-kendo-template")
         h4 year
         #year(
           data-role='rangeslider'
-          data-bind='value: years, events: {change: changeRoute}'
+          data-bind='value: years, events: { change: changeRoute }'
           data-min='1996'
           data-max='2017'
           data-small-step='1'
@@ -55,7 +55,7 @@ script(id="filter" type="text/x-kendo-template")
         h4 price
         #price(
           data-role='rangeslider'
-          data-bind='value: price'
+          data-bind='value: price, events: { change: changeRoute }'
           data-min='0'
           data-max='1000000'
           data-small-step='100'
@@ -72,7 +72,7 @@ script(id="filter" type="text/x-kendo-template")
           value='Manual'
           name='transmission'
           id='manual'
-          data-bind='checked: transmission'
+          data-bind='checked: transmission, events: { change: changeRoute }'
         )
         label(for='automatic') Automatic
         input(
@@ -80,7 +80,15 @@ script(id="filter" type="text/x-kendo-template")
           value='Automatic'
           name='transmission'
           id='automatic'
-          data-bind='checked: transmission'
+          data-bind='checked: transmission, events: { change: changeRoute }'
+        )
+        label(for='both') Doesn't mattert
+        input(
+          type='radio'
+          value=''
+          name='transmission'
+          id='both'
+          data-bind='checked: transmission, events: { change: changeRoute }'
         )
       .k-group
         h4 Fuel type
@@ -89,20 +97,27 @@ script(id="filter" type="text/x-kendo-template")
             type='radio'
             value='Disel'
             name='fuelType'
-            data-bind='checked: fuelType'
+            data-bind='checked: fuelType, events: { change: changeRoute }'
           )
         label Gasoline
           input(
             type='radio'
             value='Gasoline'
             name='fuelType'
-            data-bind='checked: fuelType'
+            data-bind='checked: fuelType, events: { change: changeRoute }'
+          )
+        label Doesn't matter
+          input(
+            type='radio'
+            value=''
+            name='fuelType'
+            data-bind='checked: fuelType, events: { change: changeRoute }'
           )
       .k-group
-        h4 Kilometrage in kkm
+        h4 Max kilometrage in kkm
         input(
           data-role='numerictextbox'
-          data-bind='value: kilometrage'
+          data-bind='value: kilometrage, events: { change: changeRoute }'
           data-min='0'
           data-max='1000'
           data-decimals='0'
@@ -112,11 +127,12 @@ script(id="filter" type="text/x-kendo-template")
           sup 3
         input(
           data-role='numerictextbox'
-          data-bind='value: engineDisplacement'
+          data-bind='value: engineDisplacement, events: { change: changeDisplacement }'
           step='100'
           data-min='0'
           data-max='10000'
           data-decimals='0'
+          data-round='true'
         )
       .k-group
         p.k-button(data-bind="click: resetFilter") reset filter

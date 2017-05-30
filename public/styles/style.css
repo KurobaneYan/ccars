@@ -3,6 +3,10 @@ body {
   margin: 10px;
 }
 
+header {
+  padding: 0px 16px;
+}
+
 img {
   width: 100%;
   height: auto;
@@ -17,6 +21,7 @@ img {
   position: relative;
   display: flex;
   flex-flow: row wrap;
+  padding: 0px 16px;
 }
 
 .carCard {
@@ -36,14 +41,14 @@ img {
 #filterForm {
   flex: 1 auto;
   order: 2;
-  padding: 16px;
+  padding: 0px 16px;
   max-width: 30%;
 }
 
 #carsList {
   flex: 2;
   order: 1;
-  padding: 16px;
+  padding: 0px 16px;
 }
 
 .carListItem {
