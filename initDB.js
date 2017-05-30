@@ -59,7 +59,7 @@ function addCars () {
           year: getRandomInt(1999, 2017),
           kilometrage: getRandomInt(10, 500),
           fuelType: fuelTypes[fuelIndex],
-          engineDiplacement: getRandomInt(16, 50) * 1000,
+          engineDisplacement: getRandomInt(16, 50) * 1000,
           transmissionType: transmissionTypes[transmissionIndex],
           photos: [photo],
           price: getRandomInt(3, 100) * 10000,
