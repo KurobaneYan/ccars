@@ -1,48 +1,49 @@
 script(id="admin" type="text/x-kendo-template")
-  #grid(
-    data-role="grid"
-    data-sortable="{mode: 'multiple', allowUnsort: true}"
-    data-toolbar="['create']"
-    data-pageable='{ "pageSize": 10 }'
-    data-scrollable="false"
-    data-bind="source: cars"
-    data-editable="popup"
-    data-columns=`
-      [
-        {field: 'manufacturer', title: 'Manufacturer'},
-        {field: 'model', title: 'Model'},
-        {field: 'year', title: 'Year'},
-        {field: 'price', title: 'Price'},
-        {field: 'transmissionType', title: 'Transmission'},
-        {field: 'fuelType', title: 'Fuel type'},
-        {field: 'engineDisplacement', title: 'Engine displacement'},
-        {field: 'kilometrage', title: 'Kilometrage'},
-        {field: 'views', title: 'Views'},
-        {
-          field: 'photos',
-          title: 'Photos',
-          editor: function (container, options) {
-            $('<form id="imgForm"><input id="imgUp" name="file" type="file" class="upload_field cloudinary_fileupload"></form><div class="preview"></div><div id="hiddenDiv" name="photos" data-bind="value: ' + options.field + '"></div>')
-                .appendTo(container)
-            let isFirst = true
-            $('#imgUp').unsigned_cloudinary_upload('mmdwfo4s', {
-              cloud_name: 'dvgllaiei',
-              tags: 'cars'
-            })
-            .bind('cloudinarydone', function (e, data) {
-              $('.preview').append($.cloudinary.image(data.result.public_id))
-              if (isFirst) {
-                $('#hiddenDiv')[0].value[0] = data.result.url
-                isFirst = false
-              } else {
-                $('#hiddenDiv')[0].value.push(data.result.url)
-              }
-            })
+  #gridWrapper
+    #grid(
+      data-role="grid"
+      data-sortable="{mode: 'multiple', allowUnsort: true}"
+      data-toolbar="['create']"
+      data-pageable='{ "pageSize": 10 }'
+      data-scrollable="false"
+      data-bind="source: cars"
+      data-editable="popup"
+      data-columns=`
+        [
+          {field: 'manufacturer', title: 'Manufacturer'},
+          {field: 'model', title: 'Model'},
+          {field: 'year', title: 'Year'},
+          {field: 'price', title: 'Price', format: '{0:c}'},
+          {field: 'transmissionType', title: 'Transmission'},
+          {field: 'fuelType', title: 'Fuel type'},
+          {field: 'engineDisplacement', title: 'Engine displacement'},
+          {field: 'kilometrage', title: 'Kilometrage'},
+          {field: 'views', title: 'Views'},
+          {
+            field: 'photos',
+            title: 'Photos',
+            editor: function (container, options) {
+              $('<form id="imgForm"><input id="imgUp" name="file" type="file" class="upload_field cloudinary_fileupload"></form><div class="preview"></div><div id="hiddenDiv" name="photos" data-bind="value: ' + options.field + '"></div>')
+                  .appendTo(container)
+              let isFirst = true
+              $('#imgUp').unsigned_cloudinary_upload('mmdwfo4s', {
+                cloud_name: 'dvgllaiei',
+                tags: 'cars'
+              })
+              .bind('cloudinarydone', function (e, data) {
+                $('.preview').append($.cloudinary.image(data.result.public_id))
+                if (isFirst) {
+                  $('#hiddenDiv')[0].value[0] = data.result.url
+                  isFirst = false
+                } else {
+                  $('#hiddenDiv')[0].value.push(data.result.url)
+                }
+              })
+            },
+            values: [],
+            template: '<img src="#:photos[0]#">'
           },
-          values: [],
-          template: '<img src="#:photos[0]#">'
-        },
-        {command: ['edit', 'destroy']}
-      ]
-    `
-  )
+          {command: ['edit', 'destroy']}
+        ]
+      `
+    )

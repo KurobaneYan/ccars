@@ -76,3 +76,11 @@ img {
 #filterForm .k-widget {
   width: 100%;
 }
+
+#gridWrapper {
+  padding: 0px 16px;
+}
+
+td img {
+  max-width: 200px;
+}
