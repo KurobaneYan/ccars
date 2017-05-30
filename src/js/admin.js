@@ -5,6 +5,21 @@ const carData = new kendo.data.DataSource({
     read: {
       url: baseUrl,
       dataType: 'json'
+    },
+    update: {
+      url: baseUrl + 'update',
+      dataType: 'json',
+      type: 'post'
+    },
+    create: {
+      url: baseUrl + 'create',
+      dataType: 'json',
+      type: 'post'
+    },
+    destroy: {
+      url: baseUrl + 'destroy',
+      dataType: 'json',
+      type: 'post'
     }
   },
   schema: {

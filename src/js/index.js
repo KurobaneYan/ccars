@@ -2,6 +2,8 @@ import { filterViewModel } from './filter.js'
 import { carViewModel } from './car.js'
 import { adminViewModel } from './admin.js'
 
+$.cloudinary.config({ cloud_name: 'dvgllaiei', api_key: '578424487719447' })
+
 const url = 'http://localhost:3000/api/cars/most-popular/25'
 
 const indexViewModel = kendo.observable({
