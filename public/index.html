@@ -7,22 +7,178 @@
     <link rel="stylesheet" href="/styles/style.css">
     <script src="libs/jquery.min.js"></script>
     <script src="libs/kendo.all.min.js"></script>
+    <script src="libs/jquery.ui.widget.js"></script>
+    <script src="libs/jquery.iframe-transport.js"></script>
+    <script src="libs/jquery.fileupload.js"></script>
+    <script src="libs/jquery.cloudinary.js"></script>
 <script id="layout" type="text/x-kendo-template">
-  <header>CCars</header>
+  <header>
+    <ul id="menu" data-role="menu">
+      <li><a href="#/">CCars</a></li>
+      <li><a href="#/filter">Filter</a></li>
+    </ul>
+  </header>
   <section id="content"></section>
-  <footer></footer>
 </script>
 <script id="index" type="text/x-kendo-template">
-  <div id="carCards" data-role="listview" data-template="carCard" data-bind="source: cars"></div>
-</script><script type="text/x-kendo-template" id="carCard">
-  <div class="carCard">
-    <img src="#=photos[0]#" alt="#:manufacturer# #:model# image" />
-    <h3>#:manufacturer# #:model#</h3>
+  <div id="carCards" data-template="carCard" data-bind="source: cars"></div>
+</script>
+<script id="car" type="text/x-kendo-template">
+  <div data-bind="source: car" data-template="carTemplate"></div>
+</script>
+<script id="carTemplate" type="text/x-kendo-template">
+  <h1>#:manufacturer# #:model# #:year#</h1>
+  <h2>#:kendo.toString(price, "c")#</h2>
+  <div>#for (let i = 0; i < photos.length; i++) {#<img src="#=photos[i]#" alt="img" >#}#</div>
+  <p>#:transmissionType# transmission</p>
+  <p>Fuel type - #:fuelType#</p>
+  <p>#:kilometrage * 1000# km</p>
+  <p>#:views# views</p>
+</script>
+<script id="filter" type="text/x-kendo-template">
+  <div id="flexFilter">
+    <div id="carsList">
+      <div data-role="listview" data-bind="source: cars" data-template="carListItem"></div>
+      <div id="pager" data-role="pager" data-bind="source: cars"></div>
+    </div>
+    <form id="filterForm">
+      <div class="k-group">
+        <h4>manufacturer</h4>
+        <input id="manufacturer" data-role="autocomplete" data-placeholder="Type a manufacturer" data-bind="
+            value: selectedManufacturer,
+            source: manufacturers,
+            events: {
+              change: manufacturerOnChange
+            }
+          ">
+      </div>
+      <div class="k-group">
+        <h4>model</h4>
+        <input id="model" data-role="autocomplete" data-placeholder="Type a model" data-bind="
+            enabled: isModelEnabled,
+            value: selectedModel,
+            source: models,
+            events: {
+              change: changeRoute
+            }
+          ">
+      </div>
+      <div class="k-group">
+        <h4>year</h4>
+        <div id="year" data-role="rangeslider" data-bind="value: years, events: { change: changeRoute }" data-min="1996" data-max="2017" data-small-step="1" data-large-step="10" data-tickplacement="none">
+          <input>
+          <input>
+        </div>
+      </div>
+      <div class="k-group">
+        <h4>price</h4>
+        <div id="price" data-role="rangeslider" data-bind="value: price, events: { change: changeRoute }" data-min="0" data-max="1000000" data-small-step="100" data-large-step="10000" data-tickplacement="none">
+          <input>
+          <input>
+        </div>
+      </div>
+      <div class="k-group">
+        <h4>Transmission</h4>
+        <label for="manual">Manual</label>
+        <input type="radio" value="Manual" name="transmission" id="manual" data-bind="checked: transmission, events: { change: changeRoute }">
+        <label for="automatic">Automatic</label>
+        <input type="radio" value="Automatic" name="transmission" id="automatic" data-bind="checked: transmission, events: { change: changeRoute }">
+        <label for="both">Doesn't mattert</label>
+        <input type="radio" value="" name="transmission" id="both" data-bind="checked: transmission, events: { change: changeRoute }">
+      </div>
+      <div class="k-group">
+        <h4>Fuel type</h4>
+        <label>Disel
+          <input type="radio" value="Disel" name="fuelType" data-bind="checked: fuelType, events: { change: changeRoute }">
+        </label>
+        <label>Gasoline
+          <input type="radio" value="Gasoline" name="fuelType" data-bind="checked: fuelType, events: { change: changeRoute }">
+        </label>
+        <label>Doesn't matter
+          <input type="radio" value="" name="fuelType" data-bind="checked: fuelType, events: { change: changeRoute }">
+        </label>
+      </div>
+      <div class="k-group">
+        <h4>Max kilometrage in kkm</h4>
+        <input data-role="numerictextbox" data-bind="value: kilometrage, events: { change: changeRoute }" data-min="0" data-max="1000" data-decimals="0">
+      </div>
+      <div class="k-group">
+        <h4>Engine displacement in cm<sup>3</sup></h4>
+        <input data-role="numerictextbox" data-bind="value: engineDisplacement, events: { change: changeDisplacement }" step="100" data-min="0" data-max="10000" data-decimals="0" data-round="true">
+      </div>
+      <div class="k-group">
+        <p class="k-button" data-bind="click: resetFilter">reset filter</p>
+      </div>
+    </form>
+  </div>
+</script>
+<script id="routeMissing" type="text/x-kendo-template">
+  <h1>404</h1>
+  <h2>Page not found</h2>
+</script>
+<script id="admin" type="text/x-kendo-template">
+  <div id="gridWrapper">
+    <div id="grid" data-role="grid" data-sortable="{mode: 'multiple', allowUnsort: true}" data-toolbar="['create']" data-pageable="{ &quot;pageSize&quot;: 10 }" data-scrollable="false" data-bind="source: cars" data-editable="popup" data-columns="
+        [
+          {field: 'manufacturer', title: 'Manufacturer'},
+          {field: 'model', title: 'Model'},
+          {field: 'year', title: 'Year'},
+          {field: 'price', title: 'Price', format: '{0:c}'},
+          {field: 'transmissionType', title: 'Transmission'},
+          {field: 'fuelType', title: 'Fuel type'},
+          {field: 'engineDisplacement', title: 'Engine displacement'},
+          {field: 'kilometrage', title: 'Kilometrage'},
+          {field: 'views', title: 'Views'},
+          {
+            field: 'photos',
+            title: 'Photos',
+            editor: function (container, options) {
+              $('&lt;form id=&quot;imgForm&quot;&gt;&lt;input id=&quot;imgUp&quot; name=&quot;file&quot; type=&quot;file&quot; class=&quot;upload_field cloudinary_fileupload&quot;&gt;&lt;/form&gt;&lt;div class=&quot;preview&quot;&gt;&lt;/div&gt;&lt;div id=&quot;hiddenDiv&quot; name=&quot;photos&quot; data-bind=&quot;value: ' + options.field + '&quot;&gt;&lt;/div&gt;')
+                  .appendTo(container)
+              let isFirst = true
+              $('#imgUp').unsigned_cloudinary_upload('mmdwfo4s', {
+                cloud_name: 'dvgllaiei',
+                tags: 'cars'
+              })
+              .bind('cloudinarydone', function (e, data) {
+                $('.preview').append($.cloudinary.image(data.result.public_id))
+                if (isFirst) {
+                  $('#hiddenDiv')[0].value[0] = data.result.url
+                  isFirst = false
+                } else {
+                  $('#hiddenDiv')[0].value.push(data.result.url)
+                }
+              })
+            },
+            values: [],
+            template: '&lt;img src=&quot;#:photos[0]#&quot;&gt;'
+          },
+          {command: ['edit', 'destroy']}
+        ]
+      "></div>
+  </div>
+</script>
+<script id="carCard" type="text/x-kendo-template">
+  <div class="carCard"><a class="k-link" href="\#/#=_id#"><img src="#=photos[0]#" alt="#:manufacturer# #:model# image">
+      <h3>#:manufacturer# #:model#</h3></a>
     <p>#:kilometrage * 1000# km</p>
     <p>#:kendo.toString(price, "c")#</p>
   </div>
 </script>
-
+<script id="carListItem" type="text/x-kendo-template">
+  <div class="carListItem">
+    <div class="img"><a class="k-link" href="\#/#=_id#"><img src="#=photos[0]#" alt="#:manufacturer# #:model# image"></a></div>
+    <div class="description"><a class="k-link" href="\#/#=_id#">#:manufacturer# #:model#</a>
+      <p>#:views# views</p>
+      <p>Kilometrage - #:kilometrage * 1000# km</p>
+      <p>Engine displacement #:engineDisplacement# cm<sup>3</sup></p>
+      <p>Year #:year#</p>
+      <p>Fuel type #:fuelType#</p>
+      <p>#:transmissionType# transmission</p>
+      <p>#:kendo.toString(price, "c")#</p>
+    </div>
+  </div>
+</script>
   </head>
   <body id="app"><script type="text/javascript" src="index.js"></script></body>
 </html>
