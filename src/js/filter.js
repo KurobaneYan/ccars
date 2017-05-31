@@ -59,6 +59,9 @@ export const filterViewModel = kendo.observable({
       this.set('selectedModel', null)
       this.models.read()
     } else {
+      if (manufacturer === '') {
+        this.set('selectedModel', null)
+      }
       this.set('isModelEnabled', false)
     }
     this.changeRoute()
