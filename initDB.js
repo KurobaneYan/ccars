@@ -29,7 +29,7 @@ let carsData = [
     'Volvo',
     [
       ['S90', 'https://i.ytimg.com/vi/BYCPcQAsy_g/maxresdefault.jpg'],
-      ['v90', 'https://2.bp.blogspot.com/-yeGjov-PR6Y/V9q_Nf98B2I/AAAAAAABeIY/tJ8rU8Dlba88VZXgUNECm-zE5s1vrfb2wCLcB/s1600/Volvo-V90-CC.jpg'],
+      ['V90', 'https://2.bp.blogspot.com/-yeGjov-PR6Y/V9q_Nf98B2I/AAAAAAABeIY/tJ8rU8Dlba88VZXgUNECm-zE5s1vrfb2wCLcB/s1600/Volvo-V90-CC.jpg'],
       ['XC90', 'http://st.motortrend.com/uploads/sites/10/2016/02/2017-volvo-xc90-front-three-quarters.jpg']
     ]
   ],
